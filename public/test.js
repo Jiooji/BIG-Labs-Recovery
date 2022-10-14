@@ -11,6 +11,7 @@ onmessage = (message) => {
         for (let j = 0; j < seed_list.length; j++) {
             iteration += 1;
             console.log(iteration);
+            //TODO fare il postMessage solo se la percentuale cambia (es: da 1% a 2%)
             postMessage({percentage: Math.floor(iteration * 100 / allcombo)});
             seedword = seed_list[j];
             poss_seed = message.data.seed.replace(seedword, possword);
