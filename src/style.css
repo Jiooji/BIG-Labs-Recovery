@@ -9,26 +9,44 @@ html {
 }
 
 #root {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
   background-color: #ededed;
 }
 
 .center {
+  min-height: 94.3vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
 }
 
-p {
+.title {
   font-size: 80px;
   font-weight: bold;
   font-family: Inter var;
   color: rgb(12, 96, 165);
   text-align: center;
-  animation-name: fadeIn;
-  animation-duration: 1s;
-  animation-timing-function: ease-in;
+}
+
+.names {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  column-gap: 10px;
+}
+
+h1 {
+  font-family: Poppins;
+}
+
+a {
+  font-size: 27px;
+  text-decoration: underline;
+  color: black;
+  font-family: Poppins;
 }
 
 @keyframes fadeIn {

@@ -9,22 +9,22 @@ All the computation is done locally so the process may take a while and we'll no
 
 if you'd recover your crypto and you would like to thank us you can make a donation here:
 
-* Terra: `terra123`
-* Juno: `juno123`
-* Cosmos: `cosmo123`
+- Terra: `terra123`
+- Juno: `juno123`
+- Cosmos: `cosmo123`
 
 ## Best practice
 
-* Insert your seed without internet connection
-* Double check each word while inserting the seed phrase.
-* Get and use an hardware wallet (like Ledger)
-* Once recovered your seed move all your funds to a new wallet
+- Insert your seed without internet connection
+- Double check each word while inserting the seed phrase.
+- Get and use an hardware wallet (like Ledger)
+- Once recovered your seed move all your funds to a new wallet
 
 ## When creating a new wallet:
 
-* Write down your seed phrase double checking each word
-* Copy your address
-* Delete the new wallet
-* Recover using the seed phrase and check the address generated
-* If the new address matches the old one you can move your funds to the new wallet
-* If not delete the wallet and restart from the first point
+- Write down your seed phrase double checking each word
+- Copy your address
+- Delete the new wallet
+- Recover using the seed phrase and check the address generated
+- If the new address matches the old one you can move your funds to the new wallet
+- If not delete the wallet and restart from the first point

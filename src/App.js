@@ -18,7 +18,8 @@ const App = () => {
   const [show, setShow] = useState(false);
   const [result, setResult] = useState("");
   const [header, setHeader] = useState("");
-  const [showtool, setShowtool] = useState(false);
+  const [showtool, setShowtool] = useState("");
+  const [button, setButton] = useState("");
   const [progress, setProgress] = useState(-1);
   const target = useRef(null);
 
@@ -42,20 +43,23 @@ const App = () => {
             worker.terminate();
             setShow(true);
             setResult(r.seed);
-            setHeader("This should be your seedphrase! 😎")
+            setHeader("This should be your seedphrase! 😎");
+            setButton(true);
           }
         } else if (r.result === false) {
           setProgress(100);
           worker.terminate();
           setShow(true);
           setResult("Complexity too high");
-          setHeader("We could not recover your wallet... 🥲")
+          setHeader("We could not recover your wallet... 🥲");
+          setButton(false);
         }
       };
     } else {
       setShow(true);
       setResult("Incompatible Blockchain.");
       setHeader("No result... 🫠");
+      setButton(false);
     }
   };
 
@@ -87,9 +91,9 @@ const App = () => {
   }
 
   return (
-    <div className="App">
+    <>
       <Container className="center">
-        <p>Recover your Cryptø</p>
+        <p className="title">Recover your Cryptø</p>
         <input
           type="text"
           placeholder="Enter address..."
@@ -104,7 +108,7 @@ const App = () => {
             }
           }}
           onFocus={() => {
-            setWidth("500px");
+            setWidth("450px");
             setHeight("45px");
           }}
         />
@@ -123,7 +127,7 @@ const App = () => {
             }
           }}
           onFocus={() => {
-            setWidth1("100%");
+            setWidth1("1200px");
             setHeight1("45px");
           }}
         />
@@ -152,6 +156,21 @@ const App = () => {
           <div></div>
         )}
       </Container>
+      <Container className="names">
+        <h1>Powered by: </h1>
+        <a href="https://github.com/0x7183" target="_blank">
+          0x7183
+        </a>
+        <a href="https://github.com/toran777/" target="_blank">
+          Toran777
+        </a>
+        <a href="https://github.com/Demennu" target="_blank">
+          Demennu
+        </a>
+        <a href="https://github.com/Jiooji" target="_blank">
+          Jiooji
+        </a>
+      </Container>
       <Modal
         show={show}
         onHide={handleClose}
@@ -159,18 +178,18 @@ const App = () => {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            {header}
-          </Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">{header}</Modal.Title>
         </Modal.Header>
         <Modal.Body>{result}</Modal.Body>
         <Modal.Footer>
           <Button
             ref={target}
             variant="success"
+            disabled={!button}
             onClick={() => {
               copytxt(result);
               setShowtool(!showtool);
+              setButton(false);
             }}
           >
             Copy seedphrase
@@ -184,7 +203,7 @@ const App = () => {
           </Overlay>
         </Modal.Footer>
       </Modal>
-    </div>
+    </>
   );
 };
 export default App;
