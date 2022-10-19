@@ -1,61 +1,69 @@
-@import url('https://rsms.me/inter/inter.css');
-html { font-family: 'Inter', sans-serif; }
+@import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter", sans-serif;
+}
 @supports (font-variation-settings: normal) {
-  html { font-family: 'Inter var', sans-serif; }
+  html {
+    font-family: "Inter var", sans-serif;
+  }
 }
 
-#root{
-    background-color: #ededed;
+#root {
+  background-color: #ededed;
 }
 
-.center{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
+.center {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
 }
 
-p{
-    font-size: 80px;
-    font-weight: bold;
-    font-family: Inter var;
-    color:rgb(12, 96, 165);
-    text-align: center;
-    animation-name: fadeIn;
-    animation-duration: 1s;
-    animation-timing-function: ease-in;
+p {
+  font-size: 80px;
+  font-weight: bold;
+  font-family: Inter var;
+  color: rgb(12, 96, 165);
+  text-align: center;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
 }
 
-@keyframes fadeIn{
-    from{opacity: 0;}
-    to{opacity: 1;}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-input{
-    width: 300px;
-    height: 30px;
-    margin: 0;
-    padding: 5px;
-    border: 0;
-    text-align: center;
-    font-size: 15px;
-    font-weight: bold;
-    transition: height 1.2s, width 1s;
+input {
+  width: 300px;
+  height: 30px;
+  margin: 0;
+  padding: 5px;
+  border: 0;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  transition: height 1.2s, width 1s;
 }
 
-input::placeholder{
-    text-align: center;
+input::placeholder {
+  text-align: center;
 }
 
-input:focus{
-    transition: height 1.2s, width 1s;
+input:focus {
+  transition: height 1.2s, width 1s;
 }
 
-.custom-input{
-    margin-top: 15px;
+.custom-input {
+  margin-top: 15px;
 }
 
-.progress-bar{
-    background-color: rgb(12, 96, 165)!important;
+.progress-bar {
+  background-color: rgb(12, 96, 165) !important;
 }
