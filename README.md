@@ -9,11 +9,51 @@ All the computation is done locally so the process may take a while and we'll no
 
 if you'd recover your crypto and you would like to thank us you can make a donation here:
 
-- Terra: `terra123`
-- Juno: `juno123`
-- Cosmos: `cosmo123`
+- Terra: `terra1qrnprc8c92ketskz7ztygm65r8w05xy59efpzd`
 
-## Best practice
+# How to use:
+
+## Install dependencies:
+- [NODEJS](https://radixweb.com/blog/installing-npm-and-nodejs-on-windows-and-mac).
+- [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+
+## Open a Terminal
+- In Windows press start write `cmd` and chose the first one.
+- In MacOs search for `Terminal` and click on the first result.
+
+## Clone the repository copy paste and press enter inside the terminal
+
+```
+git clone https://github.com/0x7183/recover-cosmos-wallet
+```
+
+## Move to the code directory (always inside the directory)
+
+```
+cd ./recover-cosmos-wallet
+```
+
+## Install packages
+
+```
+npm install
+```
+
+## Run the script
+
+```
+npm start
+```
+
+## If a browser window doesn't pop up in a few minutes open your browser and navigate to:
+
+```
+http://localhost:3000
+```
+
+Now follow the best practices and try to recover it
+
+## Best practices
 
 - Insert your seed without internet connection
 - Double check each word while inserting the seed phrase.
