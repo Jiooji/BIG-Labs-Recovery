@@ -6,7 +6,7 @@ import Overlay from "react-bootstrap/Overlay";
 import Tooltip from "react-bootstrap/Tooltip";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { MnemonicKey, LCDClient } from "@terra-money/terra.js";
-import { DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
+import { network } from "@cosmostation/cosmosjs";
 
 const App = () => {
   const [width, setWidth] = useState("");
@@ -21,6 +21,8 @@ const App = () => {
   const [showtool, setShowtool] = useState("");
   const [button, setButton] = useState("");
   const [progress, setProgress] = useState(-1);
+  const chainTerra = new LCDClient("https://pisco-lcd.terra.dev/", "pisco-1");
+  const chainCosmos = network("https://stargate.cosmos.network/","cosmoshub-4");
   const target = useRef(null);
 
   const handleClose = () => {
@@ -28,33 +30,44 @@ const App = () => {
     setProgress(-1);
   };
 
+  const get_seed_phrase = (seed, address) => {
+    if (checkseed(seed, address)) {
+      setProgress(100);
+      setShow(true);
+      setResult(seed);
+      setHeader("This should be your seedphrase! 😎");
+      setButton(true);
+      return;
+    }
+
+    const worker = new Worker("recover.js");
+    worker.onmessage = (message) => {
+      const response = message.data;
+
+      if (response.seed && checkseed(response.seed, address)) {
+          setProgress(100);
+          setShow(true);
+          setResult(response.seed);
+          setHeader("This should be your seedphrase! 😎");
+          setButton(true);
+          worker.terminate();
+      } else if (response.percentage > -1) {
+        setProgress(response.percentage);
+      } else if (response.result === false) {
+        setProgress(100);
+        setShow(true);
+        setResult("Complexity too high");
+        setHeader("We could not recover your wallet... 🥲");
+        setButton(false);
+        worker.terminate();
+      }
+    }
+    worker.postMessage({ seed: seed });
+  }
+
   const handleClick = () => {
     if (address.includes("terra") || address.includes("cosmos")) {
-      const worker = new Worker("recover.js");
-      const params = { seed: seed, address: address };
-      worker.postMessage(params);
-      worker.onmessage = async (message) => {
-        const r = message.data;
-        if (r.percentage >= 0) setProgress(r.percentage);
-        else if (r.seed) {
-          const value = await checkseed(r.seed, address);
-          if (value) {
-            setProgress(100);
-            worker.terminate();
-            setShow(true);
-            setResult(r.seed);
-            setHeader("This should be your seedphrase! 😎");
-            setButton(true);
-          }
-        } else if (r.result === false) {
-          setProgress(100);
-          worker.terminate();
-          setShow(true);
-          setResult("Complexity too high");
-          setHeader("We could not recover your wallet... 🥲");
-          setButton(false);
-        }
-      };
+      get_seed_phrase(seed, address);
     } else {
       setShow(true);
       setResult("Incompatible Blockchain.");
@@ -67,20 +80,15 @@ const App = () => {
     navigator.clipboard.writeText(result).then();
   }
 
-  async function checkseed(seed, address) {
-    let chain;
-    var possaddress;
+  function checkseed(seed, address) {
+    let possaddress;
     if (address.includes("terra")) {
-      chain = new LCDClient("https://pisco-lcd.terra.dev/", "pisco-1");
       const key = new MnemonicKey({ mnemonic: seed });
-      const wallet = chain.wallet(key);
+      const wallet = chainTerra.wallet(key);
       possaddress = wallet.key.accAddress;
     } else if (address.includes("cosmos")) {
       try {
-        const wallet = await DirectSecp256k1HdWallet.fromMnemonic(seed);
-        const [firstAccount] = await wallet.getAccounts();
-        possaddress = firstAccount.address;
-        console.log(firstAccount);
+        possaddress = chainCosmos.getAddress(seed);
       } catch {
         return false;
       }
@@ -158,18 +166,13 @@ const App = () => {
       </Container>
       <Container className="names">
         <h1>Powered by: </h1>
-        <a href="https://github.com/0x7183" target="_blank">
-          0x7183
-        </a>
-        <a href="https://github.com/toran777/" target="_blank">
-          Toran777
-        </a>
-        <a href="https://github.com/Demennu" target="_blank">
-          Demennu
-        </a>
-        <a href="https://github.com/Jiooji" target="_blank">
-          Jiooji
-        </a>
+        {
+          ["0x7183", "toran777", "Demennu", "Jiooji"].map(element => (
+            <a key={element} href={"https://github.com/" + element} rel="noopener noreferrer" target="_blank">
+              {element}
+            </a>
+          ))
+        }
       </Container>
       <Modal
         show={show}
