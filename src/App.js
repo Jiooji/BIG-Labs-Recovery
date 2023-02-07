@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import Button from "react-bootstrap/Button";
 import Overlay from "react-bootstrap/Overlay";
 import Tooltip from "react-bootstrap/Tooltip";
 import { MnemonicKey, LCDClient } from "@terra-money/terra.js";
@@ -26,8 +25,16 @@ const App = () => {
   );
   const buttonCopy = useRef(null);
   const svgTarget = useRef(null);
+  const [donationbutton, setDonationButton] = useState(false);
+  const myAddrTool = useRef(null);
+  const myAddr = "terra13z2gepfvs586rux0cf90pk0d42876fd9tfvvgq";
+  const myDiscord = useRef(null);
+  const myDiscordtxt = "Jiooji#3287";
+  const [tooladdr, setToolAddr] = useState(false);
+  const [tooldiscord, setToolDiscord] = useState(false);
 
   const get_seed_phrase = (seed, address) => {
+    setRunButton(false);
     if (checkseed(seed, address)) {
       setRunButton(false);
       setClose(false);
@@ -43,14 +50,14 @@ const App = () => {
       const response = message.data;
 
       if (response.seed && checkseed(response.seed, address)) {
-        setRunButton(false);
+        setClose(false);
         setShow(true);
         setResult(response.seed);
         setHeader("This should be your seedphrase!");
         setButton(true);
         worker.terminate();
       } else if (response.result === false) {
-        setRunButton(false);
+        setShowHelp(false);
         setShow(true);
         setClose(false);
         setResult(
@@ -65,6 +72,7 @@ const App = () => {
   };
 
   const handleClick = () => {
+    setHelp(false);
     if (address.includes("terra") || address.includes("cosmos")) {
       get_seed_phrase(seed, address);
     } else {
@@ -199,6 +207,30 @@ const App = () => {
     return showhelp;
   }
 
+  function buttonDonations() {
+    setDonationButton(true);
+
+    return donationbutton;
+  }
+
+  function toolTipDono() {
+    setShowtool(false);
+
+    return showtool;
+  }
+
+  function toolDisc() {
+    setToolDiscord(false);
+
+    return tooldiscord;
+  }
+
+  function toolAddr() {
+    setToolAddr(false);
+
+    return tooladdr;
+  }
+
   return (
     <>
       <div className="posabsolute">
@@ -267,15 +299,26 @@ const App = () => {
                 wordCount(eventSeed.target.value);
               }}
             />
-            <button
-              onClick={handleClick}
-              className="buttonrun"
-              disabled={
-                !address || !seed || !runbutton || !seedcheck || !addrcheck
-              }
-            >
-              Run
-            </button>
+            {runbutton ? (
+              <div>
+                <button
+                  onClick={() => {
+                    handleClick();
+                    svgHelpLeave();
+                  }}
+                  className="buttonrun"
+                  disabled={
+                    !address || !seed || !runbutton || !seedcheck || !addrcheck
+                  }
+                >
+                  Run
+                </button>
+              </div>
+            ) : (
+              <div className="scale-in-center">
+                <span class="loader"></span>
+              </div>
+            )}
             {show ? (
               <div className="posabsolute center bounce-in-top">
                 <Modal></Modal>
@@ -297,10 +340,59 @@ const App = () => {
               href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=support@biglabs.eu"
               target="_blank"
             >
-              Mail
+              mail
             </a>
-            Discord: 7183 | BIG Labs#8150
+            | Discord:
+            <a
+              ref={myDiscord}
+              onClick={() => {
+                setToolDiscord(!tooldiscord);
+                copytxt(myDiscordtxt);
+              }}
+              onMouseLeave={toolDisc}
+              className="textaddr"
+            >
+              {myDiscordtxt}
+            </a>
+            <Overlay target={myDiscord} show={tooldiscord} placement="top">
+              {(props) => (
+                <Tooltip id="overlay-example" {...props}>
+                  Copied!
+                </Tooltip>
+              )}
+            </Overlay>
           </div>
+          {donationbutton ? (
+            <div className="donation">
+              <div className="textapp">
+                If you recovered your wallet or appreciated the effort and want
+                to support Us you can consider making a donation.
+                <a
+                  ref={myAddrTool}
+                  onClick={() => {
+                    setToolAddr(!tooladdr);
+                    copytxt(myAddr);
+                  }}
+                  onMouseLeave={toolAddr}
+                  className="textaddr"
+                >
+                  {" "}
+                  {myAddr}
+                </a>{" "}
+                <Overlay target={myAddrTool} show={tooladdr} placement="bottom">
+                  {(props) => (
+                    <Tooltip id="overlay-example" {...props}>
+                      Copied!
+                    </Tooltip>
+                  )}
+                </Overlay>
+              </div>
+            </div>
+          ) : (
+            <div class="donationbutton vibrate-1" onClick={buttonDonations}>
+              Click Me!
+            </div>
+          )}
         </div>
       </div>
     </>
