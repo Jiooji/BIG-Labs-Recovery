@@ -7,7 +7,6 @@ const words =
     const wordslist = words.split(" ");
     const seed_list = seed.split(" ");
     const all_combinations = wordslist.length * seed_list.length;
-
     for (let i = 0; i < seed_list.length; i++) {
       for (let j = 0; j < wordslist.length; j++) {
         iteration += 1;
