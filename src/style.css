@@ -35,8 +35,8 @@
 }
 
 .div3 {
-  height: 55%;
-  width: 50%;
+  height: 50%;
+  width: 55%;
   border-radius: 0.75rem;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.8);
   display: flex;
@@ -88,8 +88,8 @@ img {
 }
 
 input {
-  width: 350px;
-  height: 50px;
+  width: 35%;
+  height: 9%;
   text-align: center;
   background: transparent;
   backdrop-filter: blur(5px);
@@ -292,7 +292,6 @@ input:focus {
 }
 
 .content {
-  font-size: 30px;
   padding: 1rem;
 }
 
@@ -310,7 +309,7 @@ input:focus {
 .svghelp {
   position: fixed;
   top: 49.1%;
-  right: 28%;
+  right: 29%;
 }
 
 .svghelp:hover {
@@ -418,18 +417,6 @@ a {
   color: black;
 }
 
-.contactme {
-  position: fixed;
-  bottom: 5px;
-  right: 20px;
-  font-size: 25px;
-  font-family: "Dosis", sans-serif;
-  font-weight: bolder;
-  color: black;
-  display: flex;
-  column-gap: 7px;
-}
-
 .loader {
   width: 48px;
   height: 48px;
@@ -441,6 +428,7 @@ a {
   box-sizing: border-box;
   animation: animloader 2s linear infinite;
 }
+
 .loader::after {
   content: "";
   box-sizing: border-box;
@@ -468,21 +456,6 @@ a {
   }
   100% {
     transform: translate(-10px, -10px);
-  }
-}
-
-.scale-in-center {
-  animation: scale-in-center 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
-@keyframes scale-in-center {
-  0% {
-    transform: scale(0);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
   }
 }
 
@@ -526,7 +499,7 @@ a {
 }
 
 .vibrate-1 {
-	animation: vibrate-1 0.3s linear 7s 10 both;
+  animation: vibrate-1 0.3s linear 7s 10 both;
 }
 
 @keyframes vibrate-1 {
@@ -551,7 +524,7 @@ a {
 }
 
 .textapp {
-  animation: textapp 1s ease-in 1s both
+  animation: textapp 1s ease-in 1s both;
 }
 
 @keyframes textapp {
@@ -565,4 +538,347 @@ a {
 
 .textaddr:hover {
   cursor: copy;
+}
+
+@media screen and (max-width: 915px) {
+  .title {
+    font-size: 200% !important;
+  }
+
+  .div3 {
+    height: 45%;
+    width: 95% !important;
+    border-radius: 0.75rem;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  input {
+    width: 60% !important;
+    height: 8%;
+    text-align: center;
+    background: transparent;
+    backdrop-filter: blur(5px);
+    margin-bottom: 30px !important;
+    border-radius: 0.75rem;
+    border-color: transparent;
+    transition: all 0.5s;
+    font-weight: bold;
+  }
+
+  .svghelp {
+    visibility: hidden;
+  }
+
+  @keyframes slide-in-blurred-bottom {
+    0% {
+      transform: translateY(0px) scaleY(2.5) scaleX(0.2);
+      transform-origin: 100% 50%;
+      filter: blur(40px);
+      opacity: 0;
+      visibility: hidden;
+    }
+    100% {
+      transform: translateY(-300px) scaleY(1) scaleX(1);
+      transform-origin: 50% 50%;
+      filter: blur(0);
+      opacity: 1;
+    }
+  }
+  .flicker-in-1 {
+    transform: translateY(-300px);
+    animation: flicker-in-1 2s linear 1.5s both;
+  }
+
+  .donationbutton {
+    width: 40%;
+    height: 7%;
+    position: absolute;
+    bottom: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.75rem;
+    font-family: "Urbanist", sans-serif;
+    font-weight: 600;
+    transition: all 0.5s;
+    background-color: rgba(255, 255, 255, 0.2);
+    font-size: 25px;
+    color: black;
+  }
+
+  .donation {
+    font-family: "Dosis", sans-serif;
+    background-color: rgba(255, 255, 255, 0.1);
+    font-size: 15px;
+    color: black;
+    position: absolute;
+    bottom: 90px !important;
+    font-weight: bolder;
+    width: 100%;
+    height: 15%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border-radius: 0.75rem;
+    transition: height 0s, width 1s;
+  }
+
+  .contactus {
+    position: fixed;
+    bottom: 5px;
+    left: 10px;
+    font-size: 20px;
+    font-family: "Dosis", sans-serif;
+    font-weight: bolder;
+    color: black;
+    display: flex;
+    column-gap: 5px;
+  }
+
+  .center {
+    right: 50%;
+  }
+
+  .fullmodal {
+    width: min-content;
+    height: max-content;
+  }
+
+  .modaltitlecontent {
+    font-size: 25px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  .modalbutton {
+    padding: 0.75rem;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .content {
+    font-size: 5px;
+  }
+}
+
+@media screen and (max-height: 430px) {
+  .div3 {
+    height: 80%;
+    width: 70%;
+    border-radius: 0.75rem;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .donationbutton {
+    visibility: hidden;
+  }
+
+  .donation {
+    visibility: hidden;
+  }
+
+  @keyframes textapp {
+    0% {
+      visibility: hidden;
+    }
+    100% {
+      visibility: hidden;
+    }
+  }
+
+  .buttonrun {
+    width: 100%;
+    height: 100%;
+  }
+
+  input {
+    width: 50%;
+    height: 10%;
+  }
+
+  .fullmodal {
+    width: 650px;
+    height: 275px;
+  }
+
+  .mymodaltitle {
+    padding: 1rem;
+    margin: 0;
+    display: flex;
+    width: 100%;
+  }
+
+  .modaltitlecontent {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "PT Serif", serif;
+  }
+
+  p {
+    font-size: 25px;
+  }
+
+  .modalbutton {
+    padding: 1rem;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .buttonmodal {
+    background-color: #f2e7d5;
+    width: 200px;
+    backdrop-filter: blur(10px);
+    padding: 9px;
+    cursor: pointer;
+    transition: all 0.5s;
+    border-radius: 1rem;
+    font-family: "Encode Sans Expanded", sans-serif;
+    font-weight: bold;
+  }
+
+  @keyframes bounce-in-top {
+    0% {
+      transform: translateY(-500px);
+      animation-timing-function: ease-in;
+      opacity: 0;
+      visibility: hidden;
+    }
+    38% {
+      transform: translateY(-20px);
+      animation-timing-function: ease-out;
+      opacity: 1;
+    }
+    55% {
+      transform: translateY(-85px);
+      animation-timing-function: ease-in;
+    }
+    72% {
+      transform: translateY(-20px);
+      animation-timing-function: ease-out;
+    }
+    81% {
+      transform: translateY(-48px);
+      animation-timing-function: ease-in;
+    }
+    90% {
+      transform: translateY(-20px);
+      animation-timing-function: ease-out;
+    }
+    95% {
+      transform: translateY(-28px);
+      animation-timing-function: ease-in;
+    }
+    100% {
+      transform: translateY(-20px);
+      animation-timing-function: ease-out;
+    }
+  }
+
+  .slide-in-blurred-bottom {
+    visibility: hidden;
+  }
+
+  .flicker-in-1 {
+    visibility: hidden;
+  }
+
+  .contactus {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .title {
+    font-size: 50px;
+  }
+
+  .div3 {
+    width: 70%;
+  }
+
+  @keyframes slide-in-blurred-bottom {
+    0% {
+      transform: translateY(0px) scaleY(2.5) scaleX(0.2);
+      transform-origin: 100% 50%;
+      filter: blur(40px);
+      opacity: 0;
+      visibility: hidden;
+    }
+    100% {
+      transform: translateY(-330px) scaleY(1) scaleX(1);
+      transform-origin: 50% 50%;
+      filter: blur(0);
+      opacity: 1;
+    }
+  }
+  .flicker-in-1 {
+    transform: translateY(-330px);
+    animation: flicker-in-1 2s linear 1.5s both;
+  }
+
+  input {
+    width: 50%;
+  }
+
+  .donation {
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (min-width: 2400px) {
+  .title {
+    font-size: 100px;
+  }
+
+  .buttonrun {
+    margin-top: 50px;
+    width: 80px;
+    height: 50px;
+  }
+
+  .donationbutton {
+    bottom: 150px;
+  }
+
+  .donation {
+    bottom: 150px;
+  }
+
+  @keyframes slide-in-blurred-bottom {
+    0% {
+      transform: translateY(0px) scaleY(2.5) scaleX(0.2);
+      transform-origin: 100% 50%;
+      filter: blur(40px);
+      opacity: 0;
+      visibility: hidden;
+    }
+    100% {
+      transform: translateY(-600px) scaleY(1) scaleX(1);
+      transform-origin: 50% 50%;
+      filter: blur(0);
+      opacity: 1;
+    }
+  }
+  .flicker-in-1 {
+    transform: translateY(-600px);
+    animation: flicker-in-1 2s linear 1.5s both;
+  }
+
+  .svghelp {
+    right: 30%;
+    top: 45%;
+  }
 }
