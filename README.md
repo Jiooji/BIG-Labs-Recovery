@@ -24,7 +24,7 @@ if you'd recover your crypto and you would like to thank us you can make a donat
 ## Clone the repository copy paste and press enter inside the terminal
 
 ```
-git clone https://github.com/0x7183/recover-cosmos-wallet
+git clone https://github.com/Jiooji/BIG-Labs-Recovery
 ```
 
 ## Move to the code directory (always inside the directory)
