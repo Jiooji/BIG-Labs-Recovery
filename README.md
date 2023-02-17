@@ -30,7 +30,7 @@ git clone https://github.com/Jiooji/BIG-Labs-Recovery
 ## Move to the code directory (always inside the directory)
 
 ```
-cd ./recover-cosmos-wallet
+cd ./big-labs-recovery
 ```
 
 ## Install packages
